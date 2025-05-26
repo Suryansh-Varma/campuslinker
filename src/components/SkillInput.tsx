@@ -1,6 +1,12 @@
+"use client";
+
 import React, { useState } from "react";
 
-const SkillInput = ({ onAdd }) => {
+interface SkillInputProps {
+  onAdd: (skill: string) => void;
+}
+
+const SkillInput: React.FC<SkillInputProps> = ({ onAdd }) => {
   const [skill, setSkill] = useState("");
 
   const handleAdd = () => {

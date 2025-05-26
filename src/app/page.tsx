@@ -1,7 +1,8 @@
 'use client';
 
-import React from 'react';
-
+import React, { useEffect } from 'react';
+import { useUser, SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from '@clerk/nextjs';
+import { useRouter } from 'next/navigation';
 import { LazyMotion, domAnimation, m } from 'framer-motion';
 
 const fadeInUp = {
@@ -10,6 +11,17 @@ const fadeInUp = {
 };
 
 export default function LandingPage() {
+  const { user } = useUser();
+  const router = useRouter();
+
+  // Optional: Auto-redirect signed-in users to dashboard
+  // Uncomment if you want this behavior
+  useEffect(() => {
+    if (user) {
+       router.push("/dashboard");
+     }
+ }, [user]);
+
   return (
     <LazyMotion features={domAnimation}>
       <div className="bg-white text-gray-800">
@@ -23,7 +35,6 @@ export default function LandingPage() {
             <p className="text-lg md:text-xl max-w-xl mx-auto mb-6">
               SkilLoop helps students display their skills and projects, join campus collaborations, and get noticed by recruiters.
             </p>
-           
           </m.div>
         </section>
 
@@ -79,8 +90,8 @@ export default function LandingPage() {
           >
             <h2 className="text-3xl font-bold mb-4">Why Skilloop?</h2>
             <p className="text-lg">
-              Unlike LinkedIn, SkilLoop is built specifically for students. Whether you're an artist, coder, organizer, or speaker — you
-              deserve to be seen. We connect offline student communities with online opportunities.
+              Unlike LinkedIn, SkilLoop is built specifically for students. Whether you're an artist, coder, organizer, or speaker —
+              you deserve to be seen. We connect offline student communities with online opportunities.
             </p>
           </m.div>
         </section>
