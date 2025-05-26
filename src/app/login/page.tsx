@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import SkillInput from "../components/SkillInput";
+import SkillInput from "./Skillbox";
 
 const Dashboard = () => {
   const userName = "Your Name"; // Replace with Google auth logic if needed

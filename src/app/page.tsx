@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
+
 import { LazyMotion, domAnimation, m } from 'framer-motion';
 
 const fadeInUp = {
@@ -13,25 +13,6 @@ export default function LandingPage() {
   return (
     <LazyMotion features={domAnimation}>
       <div className="bg-white text-gray-800">
-        {/* Header */}
-        <header className="flex items-center justify-center py-6 bg-white shadow-sm">
-          <m.img
-            src="/pics/logo.png"
-            alt="CampusLinker Logo"
-            className="w-10 h-10 mr-3 rounded-md"
-            initial="hidden"
-            animate="show"
-            variants={fadeInUp}
-          />
-          <m.h1
-            className="text-2xl font-bold text-gray-800"
-            initial="hidden"
-            animate="show"
-            variants={fadeInUp}
-          >
-            Skilloop
-          </m.h1>
-        </header>
 
         {/* Hero Section */}
         <section className="text-center py-20 bg-gradient-to-b from-blue-100 to-blue-50">
@@ -40,16 +21,9 @@ export default function LandingPage() {
               Showcase Your Talent. Connect. Collaborate. Get Discovered.
             </h1>
             <p className="text-lg md:text-xl max-w-xl mx-auto mb-6">
-              Skilloop helps students display their skills and projects, join campus collaborations, and get noticed by recruiters.
+              SkilLoop helps students display their skills and projects, join campus collaborations, and get noticed by recruiters.
             </p>
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-6">
-              <Link
-                href="/signin"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-md hover:scale-105"
-              >
-                Sign In
-              </Link>
-            </div>
+           
           </m.div>
         </section>
 
@@ -105,7 +79,7 @@ export default function LandingPage() {
           >
             <h2 className="text-3xl font-bold mb-4">Why Skilloop?</h2>
             <p className="text-lg">
-              Unlike LinkedIn, Skilloop is built specifically for students. Whether you're an artist, coder, organizer, or speaker — you
+              Unlike LinkedIn, SkilLoop is built specifically for students. Whether you're an artist, coder, organizer, or speaker — you
               deserve to be seen. We connect offline student communities with online opportunities.
             </p>
           </m.div>
@@ -144,7 +118,7 @@ export default function LandingPage() {
 
         {/* Footer */}
         <footer className="py-6 bg-blue-50 text-center text-gray-600 text-sm">
-          © 2025 CampusLinker. Connect. Collaborate. Get Discovered.
+          © 2025 SkilLoop. Connect. Collaborate. Get Discovered.
         </footer>
       </div>
     </LazyMotion>
