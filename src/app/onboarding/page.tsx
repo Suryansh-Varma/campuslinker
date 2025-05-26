@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import { useUser, useAuth } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 
-const supabaseUrl = "https://fzuhskpycgczrlwufdky.supabase.co";
-const anonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ6dWhza3B5Y2djenJsd3VmZGt5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgyNzY4MTYsImV4cCI6MjA2Mzg1MjgxNn0.j1BNhXr_Nf6VE07U4sf_oyQbuBWCZi0SPYcfiMuEgNs"; // Keep it secure in env in prod
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
 export default function Onboarding() {
   const { user } = useUser();
