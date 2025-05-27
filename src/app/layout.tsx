@@ -24,8 +24,7 @@ import {
   SignedOut,
   UserButton,
 } from '@clerk/nextjs'
-import next from "next";
-import { image } from "framer-motion/client";
+
 
 
 export default function RootLayout({
