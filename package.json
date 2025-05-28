@@ -11,12 +11,14 @@
   "dependencies": {
     "@clerk/clerk-react": "^5.31.6",
     "@clerk/clerk-sdk-node": "^4.13.23",
-    "@clerk/nextjs": "^6.20.0",
+    "@clerk/nextjs": "^6.20.1",
     "@prisma/client": "^6.8.2",
     "@supabase/supabase-js": "^2.49.8",
     "bcrypt": "^6.0.0",
     "bcryptjs": "^3.0.2",
+    "clsx": "^2.1.1",
     "framer-motion": "^12.12.2",
+    "lucide-react": "^0.511.0",
     "next": "^15.3.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"

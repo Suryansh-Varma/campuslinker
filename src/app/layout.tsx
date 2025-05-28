@@ -42,7 +42,7 @@ export default async function RootLayout({
             {/* Logo and Title */}
             <div className="flex items-center space-x-2">
               <Image src="/pics/logo.png" alt="SkilLoop Logo" width={32} height={32} />
-              <span className="font-semibold text-lg text-gray-900">SkilLoop</span>
+              <span className="font-semibold text-xl text-blue-700 ">SkilLoop</span>
             </div>
 
             {/* Auth Buttons */}

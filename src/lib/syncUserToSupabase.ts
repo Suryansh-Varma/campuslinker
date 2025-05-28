@@ -1,4 +1,3 @@
-// lib/syncUserToSupabase.ts
 import { clerkClient } from '@clerk/clerk-sdk-node';
 import { createClient } from "@supabase/supabase-js";
 
@@ -12,47 +11,60 @@ type Profile = {
   id: string;
   full_name?: string | null;
   email?: string | null;
-  created_at?: string; // Supabase will handle the default timestamp
+  created_at?: string;
 };
 
 export async function syncUserToSupabase(userId: string) {
   try {
     // Get user from Clerk
     const user = await clerkClient.users.getUser(userId);
-    
+
     if (!user) {
       throw new Error(`User ${userId} not found in Clerk`);
     }
 
-    // Get primary email or fallback to first email
+    // Get primary email or fallback
     const primaryEmail = user.emailAddresses.find(
       email => email.id === user.primaryEmailAddressId
-    )?.emailAddress;
+    )?.emailAddress ?? user.emailAddresses[0]?.emailAddress ?? null;
 
-    // Prepare data matching your table structure
+    // Prepare profile data
     const profileData: Profile = {
       id: user.id,
       full_name: `${user.firstName ?? ""} ${user.lastName ?? ""}`.trim() || null,
-      email: primaryEmail ?? user.emailAddresses[0]?.emailAddress ?? null,
-      // created_at is handled by Supabase default
+      email: primaryEmail,
     };
 
-    // Upsert into Supabase
-    const { error } = await supabase
+    // Upsert profile into Supabase
+    const { error: profileError } = await supabase
       .from('profiles')
       .upsert(profileData);
 
-    if (error) {
-      throw error;
+    if (profileError) {
+      throw profileError;
+    }
+
+    // Insert sign-in record into signins table
+    const { error: signinError } = await supabase
+      .from('signins')
+      .insert({
+        user_id: user.id,
+        email: primaryEmail,
+        // signed_in_at will default to now()
+      });
+
+    if (signinError) {
+      throw signinError;
     }
 
     return { success: true, userId: user.id };
+
   } catch (error) {
     console.error('Error syncing user to Supabase:', error);
-    return { 
-      success: false, 
+    return {
+      success: false,
       error: error instanceof Error ? error.message : 'Unknown error',
-      userId 
+      userId
     };
   }
 }
