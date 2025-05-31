@@ -15,9 +15,9 @@ datasource db {
 }
 // prisma/schema.prisma
 model User {
-  id        String  @id @default(cuid())
-  clerkId   String  @unique
-  email     String  @unique
-  name      String
-  // other fields...
+  id       String   @id @default(cuid())
+  name     String
+  email    String   @unique
+  password String
+  createdAt DateTime @default(now())
 }
