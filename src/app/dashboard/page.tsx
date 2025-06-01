@@ -204,7 +204,9 @@ const searchUsersBySkill = async () => {
     }
 
     // Debug: Log the full request URL
-    const skillsUrl = `${supabaseUrl}/rest/v1/skills?skill=ilike.%25${encodeURIComponent(connectSearch.trim())}%25&select=skill,user_id`;
+    const skillSearchTerm = connectSearch.trim().toLowerCase();
+    const skillsUrl = `${supabaseUrl}/rest/v1/skills?skill=ilike.%25${encodeURIComponent(skillSearchTerm)}%25&select=skill,user_id`;
+
     console.log("Skills query URL:", skillsUrl);
 
     const skillRes = await fetch(skillsUrl, {
@@ -234,7 +236,7 @@ const searchUsersBySkill = async () => {
       return;
     }
 
-    const profilesUrl = `${supabaseUrl}/rest/v1/profiles?id=in.(${userIds.map(id => `'${id}'`).join(",")})`;
+    const profilesUrl = `${supabaseUrl}/rest/v1/profiles?id=in.(${userIds.join(",")})`;
     console.log("Profiles query URL:", profilesUrl); // Debug log
 
     const profileRes = await fetch(profilesUrl, {
